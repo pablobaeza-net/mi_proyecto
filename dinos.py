@@ -104,18 +104,24 @@ class VistaEcosistema:
         for _ in range(2):
             self.ecosistema.agregar(Carnivoro(random.randint(50, 450), random.randint(50, 350)))
 
-    def on_paint(self, event):
+        def on_paint(self, event):
         dc = wx.PaintDC(self.panel)
-        dc.SetBackground(wx.Brush('white'))
+
+        dc.SetBackground(wx.Brush('forest green'))
         dc.Clear()
 
+        planta_posiciones = [(50, 50), (100, 300), (400, 100), (300, 250)]
+        dc.SetBrush(wx.Brush('dark green'))
+        for x, y in planta_posiciones:
+            dc.DrawCircle(x, y, 8)
+       
         for e in self.ecosistema.entidades:
             if isinstance(e, Planta):
-                dc.SetBrush(wx.Brush('green'))
+                dc.SetBrush(wx.Brush('lime green'))
             elif isinstance(e, Herbivoro):
-                dc.SetBrush(wx.Brush('blue'))
+                dc.SetBrush(wx.Brush('sky blue'))
             elif isinstance(e, Carnivoro):
-                dc.SetBrush(wx.Brush('red'))
+                dc.SetBrush(wx.Brush('firebrick'))
             dc.DrawCircle(e.posicion_x, e.posicion_y, 10)
 
     def on_timer(self, event):
@@ -128,7 +134,6 @@ class VistaEcosistema:
 
     def iniciar(self):
         self.app.MainLoop()
-
 # -------------------- Main --------------------
 
 if __name__ == "__main__":
