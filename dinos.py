@@ -27,8 +27,6 @@ class Planta(Especie):
     def __init__(self, x, y):
         super().__init__(x, y, vida=999)
 
-    def mover(self):
-        pass  # Las plantas no se mueven
 
 class Herbivoro(Especie):
     def __init__(self, x, y):
@@ -52,6 +50,22 @@ class Carnivoro(Especie):
                 self.vida += 15
                 presa.viva = False
 
+class Omnivoro(Especie):
+    def __init__(self, x, y, vida=200)
+
+    def alimentarse(self, plantas, herbivoros):
+        for plantas in plantas:
+            distancia = ((self.posicion_x - planta.posicion_x)**2 + (self.posicion_y - planta.posicion_y)**2)**0.5
+            if distancia < 20:
+                self.vida += 8
+                planta.viiva = False
+                return
+        for herbivoro in herbivoros:
+            distancia = ((self.posicion_x - herbivoro.posicion_x)**2 + (self.posicion_y - herbivoro.posicion_y)**2)**0.5
+            if distancia <20:
+                self.vida +=12
+                herbivoro.vida = False
+                return
 class Ecosistema:
     def __init__(self):
         self.entidades = []
@@ -63,6 +77,8 @@ class Ecosistema:
         plantas = [e for e in self.entidades if isinstance(e, Planta) and e.viva]
         herbivoros = [e for e in self.entidades if isinstance(e, Herbivoro) and e.viva]
         carnivoros = [e for e in self.entidades if isinstance(e, Carnivoro) and e.viva]
+        omnivoros = [e for e in self.entidades if isinstance(e, Omnivoro) and e.viva]
+        
 
         for e in self.entidades:
             if e.viva:
@@ -71,6 +87,8 @@ class Ecosistema:
                     e.comer(plantas)
                 elif isinstance(e, Carnivoro):
                     e.cazar(herbivoros)
+                elif isinstance(e, Omnivoros)
+                    e.alimentarse(plantas, herbivoros)
                 e.envejecer()
 
         self.entidades = [e for e in self.entidades if e.viva]
@@ -103,8 +121,10 @@ class VistaEcosistema:
             self.ecosistema.agregar(Herbivoro(random.randint(50, 450), random.randint(50, 350)))
         for _ in range(2):
             self.ecosistema.agregar(Carnivoro(random.randint(50, 450), random.randint(50, 350)))
+        for _ in range(2):
+            self.ecosistema.agregar(Omnivoro(random.raditn(50,450), random.radint(50, 350)))
 
-        def on_paint(self, event):
+    def on_paint(self, event):
         dc = wx.PaintDC(self.panel)
 
         dc.SetBackground(wx.Brush('forest green'))
@@ -122,6 +142,8 @@ class VistaEcosistema:
                 dc.SetBrush(wx.Brush('sky blue'))
             elif isinstance(e, Carnivoro):
                 dc.SetBrush(wx.Brush('firebrick'))
+            elif isinstance(e, Omnivoro):
+                dc.SetBrush(wx.Brush('purple'))
             dc.DrawCircle(e.posicion_x, e.posicion_y, 10)
 
     def on_timer(self, event):
