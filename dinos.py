@@ -51,21 +51,23 @@ class Carnivoro(Especie):
                 presa.viva = False
 
 class Omnivoro(Especie):
-    def __init__(self, x, y, vida=200)
+    def __init__(self, x, y):
+        super().__init__(x, y, vida=110)
 
     def alimentarse(self, plantas, herbivoros):
-        for plantas in plantas:
+        for planta in plantas:
             distancia = ((self.posicion_x - planta.posicion_x)**2 + (self.posicion_y - planta.posicion_y)**2)**0.5
             if distancia < 20:
                 self.vida += 8
-                planta.viiva = False
+                planta.viva = False
                 return
         for herbivoro in herbivoros:
             distancia = ((self.posicion_x - herbivoro.posicion_x)**2 + (self.posicion_y - herbivoro.posicion_y)**2)**0.5
-            if distancia <20:
-                self.vida +=12
-                herbivoro.vida = False
+            if distancia < 20:
+                self.vida += 12
+                herbivoro.viva = False
                 return
+
 class Ecosistema:
     def __init__(self):
         self.entidades = []
@@ -87,7 +89,7 @@ class Ecosistema:
                     e.comer(plantas)
                 elif isinstance(e, Carnivoro):
                     e.cazar(herbivoros)
-                elif isinstance(e, Omnivoros)
+                elif isinstance(e, Omnivoro):
                     e.alimentarse(plantas, herbivoros)
                 e.envejecer()
 
@@ -122,7 +124,7 @@ class VistaEcosistema:
         for _ in range(2):
             self.ecosistema.agregar(Carnivoro(random.randint(50, 450), random.randint(50, 350)))
         for _ in range(2):
-            self.ecosistema.agregar(Omnivoro(random.raditn(50,450), random.radint(50, 350)))
+            self.ecosistema.agregar(Omnivoro(random.randint(50, 450), random.randint(50, 350)))
 
     def on_paint(self, event):
         dc = wx.PaintDC(self.panel)
