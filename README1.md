@@ -6,9 +6,9 @@ para modelar las interacciones biológicas de diferentes especies. La simulació
 
 1. ESTRUCTURA Y PRINCIPIOS DE POO:
 El proyecto está rigurosamente dividido en dos capas principales y organizadas en módulos, cumpliendo con los requisitos de la evaluación:
-|-----------------------------------------------------------------------------------------------------|
+|-----------|---------------|------------------------------|------------------------------------------|
 |Capa       |     modulo    |    responsabilidad           |   principio POO clave                    |
-|-----------------------------------------------------------------------------------------------------|
+|-----------|---------------|------------------------------|------------------------------------------|
 |Logica     |     logic.py  |    modelado de especies      |   Abstraccion, Herencia,                 |
 |           |               |    (Especie, Planta,         |   Polimorfismo, Composicion.             | 
 |           |               |    Hervivoro, Carnivoro      |                                          |
@@ -16,13 +16,13 @@ El proyecto está rigurosamente dividido en dos capas principales y organizadas 
 |           |               |    de iteacciones globales   |                                          |
 |           |               |    (Ecosistema)              |                                          |
 |           |               |                              |                                          |
-|-----------------------------------------------------------------------------------------------------|
+|-----------|---------------|------------------------------|------------------------------------------|
 |Vista      |    view.py    |   Representacion visual del  |  Encapsulamiento, separacion             |
 |           |               |   estado del ecosistema      |  separacion de preocupaciones            |
 |           |               |   (VistaEcosistema), control |                                          |
 |           |               |   de la interfaz grafica     |                                          |  
 |           |               |                              |                                          |
-|-----------------------------------------------------------------------------------------------------|
+|-----------|---------------|------------------------------|------------------------------------------|
 
 Modelado de Clases y Comportamientos:
 
